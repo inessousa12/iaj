@@ -14,6 +14,11 @@ public class MinionAI : MonoBehaviour
     public bool isPaused = false;
     public float damageDone;
 
+
+    //Waypoint stuff
+    CharacterNavigationController controller;
+    public Waypoint currentWaypoint;
+
     //Patroling
     public Vector3 walkPoint;
     public bool walkPointSet;
@@ -33,7 +38,9 @@ public class MinionAI : MonoBehaviour
 
     void Start()
     {
+        controller = GetComponent<CharacterNavigationController>();
         damageSound = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        controller.SetDestination(currentWaypoint.GetPosition());
     }
 
     public void Update()
@@ -44,6 +51,7 @@ public class MinionAI : MonoBehaviour
         if (!targetInSightRange && !targetInAttackRange)
         {
             Idling();
+
         }
         else if (targetInSightRange && !targetInAttackRange)
         {
@@ -64,11 +72,19 @@ public class MinionAI : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         enemy = gameObject.transform;
+        controller = GetComponent<CharacterNavigationController>();
     }
 
     private void Idling()
     {
-
+        if (controller)
+        {
+            if (controller.reachedDestination)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+                controller.SetDestination(currentWaypoint.GetPosition());
+            }
+        }
     }
 
     private void Chase()
