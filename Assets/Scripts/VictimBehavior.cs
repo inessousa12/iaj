@@ -22,7 +22,6 @@ public class VictimBehavior : MonoBehaviour
     public bool targetInSightRange, targetInAttackRange;
     private bool hasBeenDoubled = false;
 
-
     public void Update()
     {
         targetInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);

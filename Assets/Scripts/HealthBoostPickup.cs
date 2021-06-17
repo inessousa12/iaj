@@ -37,7 +37,7 @@ public class HealthBoostPickup : MonoBehaviour
 
         disablePickups();
 
-        FindObjectOfType<NPCHealth>().doubleHealth();
+        GameObject.FindObjectOfType<NPCHealth>().doubleHealth();
 
         yield return new WaitForSeconds(duration);
 
