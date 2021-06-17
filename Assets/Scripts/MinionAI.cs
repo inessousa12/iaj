@@ -40,7 +40,10 @@ public class MinionAI : MonoBehaviour
     {
         controller = GetComponent<CharacterNavigationController>();
         damageSound = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
-        controller.SetDestination(currentWaypoint.GetPosition());
+        if (controller)
+        {
+            controller.SetDestination(currentWaypoint.GetPosition());
+        }
     }
 
     public void Update()
