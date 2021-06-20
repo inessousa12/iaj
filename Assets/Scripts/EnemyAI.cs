@@ -136,8 +136,7 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    private void SearchWalkPoint()
-    {
+    private void SearchWalkPoint() {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
