@@ -53,7 +53,7 @@ public class MinionAI : MonoBehaviour
 
         if (!targetInSightRange && !targetInAttackRange)
         {
-            Idling();
+            FollowWaypoint();
 
         }
         else if (targetInSightRange && !targetInAttackRange)
@@ -78,7 +78,7 @@ public class MinionAI : MonoBehaviour
         controller = GetComponent<CharacterNavigationController>();
     }
 
-    private void Idling()
+    private void FollowWaypoint()
     {
         if (controller)
         {
